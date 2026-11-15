@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="互動探索 1 至 100 層巴斯卡三角形，切換非 2 至 10 的倍數塗黑圖形。"
+    />
+    <title>巴斯卡三角形 1 至 100 層倍數圖形</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#diagram">跳到圖形</a>
+
+    <header class="hero">
+      <div class="hero__eyebrow">PASCAL TRIANGLE LAB</div>
+      <div class="hero__row">
+        <div>
+          <h1>巴斯卡三角形<br /><span>1～100 層倍數圖形</span></h1>
+          <p class="hero__intro">
+            自由選擇 1～100 層，再選一個數字，觀察「非該數倍數」塗黑後形成的規律。
+          </p>
+        </div>
+        <div class="hero__formula" aria-label="巴斯卡三角形規律">
+          <span>兩側皆為 1</span>
+          <strong>左上 ＋ 右上 ＝ 目前數字</strong>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="control-panel" aria-labelledby="control-title">
+        <div class="control-panel__heading">
+          <div>
+            <p class="step-label">選擇塗黑規則</p>
+            <h2 id="control-title">想觀察哪一種倍數圖形？</h2>
+          </div>
+          <button id="resetButton" class="reset-button" type="button">回到空白版</button>
+        </div>
+
+        <div class="rule-buttons" role="group" aria-label="選擇非幾的倍數塗黑">
+          <button class="rule-button is-active" type="button" data-divisor="0" aria-pressed="true">
+            <span class="rule-button__number">空白</span>
+            <span class="rule-button__label">全部不塗黑</span>
+          </button>
+          <button class="rule-button" type="button" data-divisor="2" aria-pressed="false">
+            <span class="rule-button__number">2</span><span class="rule-button__label">非 2 倍數</span>
+          </button>
+          <button class="rule-button" type="button" data-divisor="3" aria-pressed="false">
+            <span class="rule-button__number">3</span><span class="rule-button__label">非 3 倍數</span>
+          </button>
+          <button class="rule-button" type="button" data-divisor="4" aria-pressed="false">
+            <span class="rule-button__number">4</span><span class="rule-button__label">非 4 倍數</span>
+          </button>
+          <button class="rule-button" type="button" data-divisor="5" aria-pressed="false">
+            <span class="rule-button__number">5</span><span class="rule-button__label">非 5 倍數</span>
+          </button>
+          <button class="rule-button" type="button" data-divisor="6" aria-pressed="false">
+            <span class="rule-button__number">6</span><span class="rule-button__label">非 6 倍數</span>
+          </button>
+          <button class="rule-button" type="button" data-divisor="7" aria-pressed="false">
+            <span class="rule-button__number">7</span><span class="rule-button__label">非 7 倍數</span>
+          </button>
+          <button class="rule-button" type="button" data-divisor="8" aria-pressed="false">
+            <span class="rule-button__number">8</span><span class="rule-button__label">非 8 倍數</span>
+          </button>
+          <button class="rule-button" type="button" data-divisor="9" aria-pressed="false">
+            <span class="rule-button__number">9</span><span class="rule-button__label">非 9 倍數</span>
+          </button>
+          <button class="rule-button" type="button" data-divisor="10" aria-pressed="false">
+            <span class="rule-button__number">10</span><span class="rule-button__label">非 10 倍數</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="diagram-card" id="diagram" aria-labelledby="diagramTitle">
+        <div class="diagram-card__topbar">
+          <div>
+            <p class="step-label">即時圖形</p>
+            <h2 id="diagramTitle">32 層空白版</h2>
+            <p id="ruleDescription" class="rule-description">所有六邊形維持淺色，數字完整顯示。</p>
+          </div>
+
+          <div class="diagram-actions">
+            <div class="zoom-controls" role="group" aria-label="縮放圖形">
+              <button id="zoomOut" type="button" aria-label="縮小圖形">−</button>
+              <button id="zoomFit" type="button">適合畫面</button>
+              <button id="zoomIn" type="button" aria-label="放大圖形">＋</button>
+            </div>
+            <button id="downloadSvg" class="download-button" type="button">下載目前圖形</button>
+          </div>
+        </div>
+
+        <div class="layer-picker layer-picker--diagram" aria-labelledby="layer-picker-title">
+          <div class="layer-picker__copy">
+            <label id="layer-picker-title" for="layerRange">層數</label>
+            <span>1～100 即時預覽</span>
+          </div>
+          <div class="layer-picker__controls">
+            <input id="layerRange" type="range" min="1" max="100" value="32" aria-label="巴斯卡三角形層數" />
+            <div class="layer-number-wrap">
+              <input id="layerNumber" type="number" min="1" max="100" value="32" inputmode="numeric" aria-label="輸入層數" />
+              <span>層</span>
+            </div>
+          </div>
+          <button id="animationToggle" class="animation-button" type="button" aria-pressed="false">
+            <span id="animationIcon" class="animation-button__icon" aria-hidden="true">▶</span>
+            <span id="animationLabel">播放 1→100</span>
+          </button>
+          <div class="layer-summary" aria-live="polite">
+            <strong id="selectedLayerLabel">32 層</strong>
+            <span id="selectedCellCount">共 528 個六邊形</span>
+          </div>
+        </div>
+
+        <div class="stats" aria-live="polite">
+          <div class="stat">
+            <span class="stat__dot stat__dot--dark"></span>
+            <span>黑色六邊形</span>
+            <strong id="blackCount">0</strong>
+          </div>
+          <div class="stat">
+            <span class="stat__dot stat__dot--light"></span>
+            <span>淺色六邊形</span>
+            <strong id="lightCount">528</strong>
+          </div>
+          <div class="stat stat--total">
+            <span>總數</span><strong id="totalCount">528</strong>
+          </div>
+        </div>
+
+        <div class="diagram-viewport" id="diagramViewport">
+          <svg
+            id="pascalSvg"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="svgTitle svgDescription"
+          >
+            <title id="svgTitle">32 層巴斯卡三角形空白版</title>
+            <desc id="svgDescription">共有 528 個六邊形，每個六邊形內都有一個巴斯卡三角形數字。</desc>
+            <g id="triangleLayer"></g>
+          </svg>
+          <div id="tooltip" class="tooltip" role="status" aria-live="polite" hidden></div>
+        </div>
+
+        <p class="diagram-hint">將游標移到六邊形上可查看層數、位置與整除狀態；可用上方按鈕放大檢視。</p>
+      </section>
+
+      <section class="how-it-works" aria-labelledby="how-title">
+        <p class="step-label">觀察方式</p>
+        <h2 id="how-title">四個步驟看見規律</h2>
+        <ol>
+          <li><span>01</span><strong>選擇層數</strong><p>從 1～100 層中選擇想探索的範圍。</p></li>
+          <li><span>02</span><strong>先看空白版</strong><p>確認每層的數字排列與左右對稱。</p></li>
+          <li><span>03</span><strong>選擇 2～10</strong><p>不是該數倍數的六邊形會變成黑色。</p></li>
+          <li><span>04</span><strong>比較圖形</strong><p>切換不同按鈕，觀察週期、對稱與碎形般的圖案。</p></li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <p>巴斯卡三角形 1～100 層互動探索</p>
+      <p>每一層的數字由上一層相鄰兩數相加而成</p>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
