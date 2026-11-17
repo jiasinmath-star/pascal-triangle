@@ -1,24 +1,35 @@
 :root {
   --ink: #0d2f35;
-  --muted: #5b6e70;
-  --teal: #0b6672;
-  --teal-2: #dff4ef;
-  --cream: #fff9e9;
-  --paper: #fffdf7;
+  --muted: #4f747c;
+  --teal: #078fa1;
+  --teal-2: #dff9f5;
+  --cream: #eefcff;
+  --paper: rgba(255, 255, 255, 0.9);
   --yellow: #f4c95d;
-  --coral: #ec6b56;
+  --coral: #ff7568;
+  --purple: #6b5cff;
+  --sky: #8fe7f5;
+  --mint: #67dcc6;
   --black: #091013;
-  --line: #c9d9d7;
-  --shadow: 0 22px 60px rgba(13, 47, 53, 0.12);
+  --line: rgba(43, 137, 151, 0.22);
+  --shadow: 0 24px 64px rgba(34, 128, 145, 0.15);
   font-family: "Microsoft JhengHei", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
   color: var(--ink);
-  background: var(--cream);
+  background: #eefcff;
   font-synthesis: none;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; background: var(--cream); }
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(103, 220, 198, 0.22), transparent 30rem),
+    radial-gradient(circle at 88% 30%, rgba(143, 231, 245, 0.32), transparent 34rem),
+    linear-gradient(112deg, #e6fbf8 0%, #eaf8ff 48%, #fffaf0 100%);
+  background-attachment: fixed;
+}
 button { font: inherit; }
 
 .skip-link {
@@ -38,20 +49,24 @@ button { font: inherit; }
   position: relative;
   overflow: hidden;
   padding: clamp(2.8rem, 7vw, 6.5rem) max(1.25rem, calc((100vw - 1320px) / 2));
-  color: white;
-  background:
-    radial-gradient(circle at 82% 12%, rgba(244, 201, 93, 0.32) 0 8%, transparent 8.4%),
-    linear-gradient(135deg, #0a5964, #0d2f35 72%);
+  color: var(--ink);
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.93) 32%, rgba(255,255,255,.46) 56%, rgba(255,255,255,.04) 82%),
+    url("./assets/pascal-pearls-jade-cover-bright-v2.png");
+  background-position: center;
+  background-size: cover;
+  box-shadow: inset 0 -1px 0 rgba(55, 160, 176, .18);
 }
 .hero::after {
   content: "";
   position: absolute;
-  right: -6rem;
-  bottom: -12rem;
-  width: 32rem;
-  height: 32rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  transform: rotate(45deg);
+  inset: auto auto -5rem -7rem;
+  width: 25rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: rgba(103, 220, 198, .2);
+  transform: rotate(-8deg);
+  filter: blur(1px);
 }
 .hero__eyebrow,
 .step-label {
@@ -61,7 +76,7 @@ button { font: inherit; }
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-.hero__eyebrow { color: var(--yellow); }
+.hero__eyebrow { color: var(--purple); }
 .hero__row {
   position: relative;
   z-index: 1;
@@ -78,24 +93,26 @@ h1 {
   line-height: 0.98;
   letter-spacing: -0.055em;
 }
-h1 span { color: var(--yellow); }
+h1 span { color: #078fae; }
 .hero__intro {
   max-width: 660px;
   margin-bottom: 0;
-  color: rgba(255,255,255,.78);
+  color: #187f9d;
+  font-weight: 700;
   font-size: clamp(1rem, 1.6vw, 1.25rem);
   line-height: 1.85;
 }
 .hero__formula {
   padding: 1.35rem 1.5rem;
-  border: 1px solid rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.76);
   border-radius: 1.2rem;
-  background: rgba(255,255,255,.08);
-  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 18px 48px rgba(34, 128, 145, .16);
+  backdrop-filter: blur(16px);
 }
 .hero__formula span,
 .hero__formula strong { display: block; }
-.hero__formula span { margin-bottom: .35rem; color: var(--yellow); font-size: .83rem; font-weight: 800; }
+.hero__formula span { margin-bottom: .35rem; color: #b67b00; font-size: .83rem; font-weight: 800; }
 .hero__formula strong { font-size: clamp(1rem, 1.8vw, 1.35rem); line-height: 1.55; }
 
 main {
@@ -110,6 +127,7 @@ main {
   border: 1px solid rgba(13,47,53,.1);
   background: var(--paper);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
 }
 .control-panel {
   padding: clamp(1.4rem, 3vw, 2.3rem);
@@ -164,7 +182,7 @@ h2 {
   padding: .5rem .75rem;
   border: 1px solid var(--line);
   border-radius: .85rem;
-  background: #f4f9f7;
+  background: rgba(232, 252, 249, .9);
 }
 .layer-picker--diagram {
   position: sticky;
@@ -172,7 +190,7 @@ h2 {
   top: .75rem;
   margin-top: .9rem;
   border-color: rgba(11,102,114,.25);
-  background: rgba(244,249,247,.96);
+  background: rgba(238, 253, 252, .94);
   box-shadow: 0 10px 26px rgba(13,47,53,.08);
   backdrop-filter: blur(10px);
 }
@@ -235,13 +253,18 @@ h2 {
   padding: .85rem .9rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
-  background: #fff;
+  background: rgba(255,255,255,.94);
   color: var(--ink);
   cursor: pointer;
   transition: transform .18s, border-color .18s, box-shadow .18s, background .18s;
 }
 .rule-button:hover { transform: translateY(-2px); border-color: var(--teal); box-shadow: 0 8px 18px rgba(13,47,53,.1); }
-.rule-button.is-active { border-color: var(--ink); background: var(--ink); color: white; }
+.rule-button.is-active {
+  border-color: #087e90;
+  background: linear-gradient(135deg, #0f9db1, #067488);
+  color: white;
+  box-shadow: 0 9px 24px rgba(6, 116, 136, .2);
+}
 .rule-button__number { font-size: 1.25rem; font-weight: 900; line-height: 1; }
 .rule-button__label { font-size: .77rem; opacity: .75; }
 
@@ -269,7 +292,7 @@ h2 {
   min-width: 168px;
   padding: .62rem .8rem;
   border-radius: .8rem;
-  background: #f2f7f5;
+  background: rgba(232, 249, 248, .88);
   color: var(--muted);
   font-size: .85rem;
 }
@@ -285,7 +308,7 @@ h2 {
   max-height: min(74vh, 980px);
   border: 1px solid #e2e8e5;
   border-radius: 1rem;
-  background: #fff9e8;
+  background: linear-gradient(135deg, #f2fffd 0%, #f0fbff 52%, #fffbef 100%);
   scrollbar-color: var(--teal) #e9efec;
 }
 #pascalSvg {
@@ -294,7 +317,7 @@ h2 {
   height: auto;
   min-width: 760px;
   transition: width .25s ease;
-  background: #fff9e8;
+  background: linear-gradient(135deg, #f2fffd 0%, #f0fbff 52%, #fffbef 100%);
 }
 .hex-cell { cursor: crosshair; }
 .hex-shape { vector-effect: non-scaling-stroke; transition: fill .28s ease, stroke .28s ease; }
@@ -339,8 +362,9 @@ footer {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.5rem max(1.25rem, calc((100vw - 1480px) / 2));
-  background: var(--ink);
-  color: rgba(255,255,255,.72);
+  border-top: 1px solid rgba(43, 137, 151, .18);
+  background: linear-gradient(100deg, rgba(207, 247, 242, .94), rgba(220, 244, 255, .94), rgba(255, 245, 223, .94));
+  color: #2c6671;
   font-size: .78rem;
 }
 footer p { margin: 0; }
@@ -356,7 +380,13 @@ footer p { margin: 0; }
 }
 
 @media (max-width: 700px) {
-  .hero { padding-bottom: 4rem; }
+  .hero {
+    padding-bottom: 4rem;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,.97), rgba(255,255,255,.82)),
+      url("./assets/pascal-pearls-jade-cover-bright-v2.png");
+    background-position: 61% center;
+  }
   h1 { font-size: clamp(2.65rem, 14vw, 4.5rem); }
   main { width: min(100% - 1rem, 1480px); }
   .control-panel__heading,
